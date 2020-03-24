@@ -25,7 +25,7 @@ echo "This is the value specified for the input 'repository_url': ${repository_u
 # git@github.com:alphaversion/bamboo.git -> https://api.github.com/repos/:owner/:repo/issues/:issue_number
 
 if [ -z "${issue_number}" ]; then
-    issue_number=`echo "${BITRISE_GIT_MESSAGE}" | sed -E "s/^.*#([0-9]+).*$/\1/"`
+    issue_number=`echo "${GIT_CLONE_COMMIT_MESSAGE_SUBJECT}" | sed -E "s/^.*#([0-9]+).*$/\1/"`
 fi
 
 OWNER=`echo ${repository_url} | sed -E "s/git@github.com\:(.*)\/(.*)\.git/\1/"`
