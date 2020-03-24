@@ -8,7 +8,7 @@ echo "This is the value specified for the input 'repository_url': ${repository_u
 # You can export Environment Variables for other Steps with
 #  envman, which is automatically installed by `bitrise setup`.
 # A very simple example:
-envman add --key EXAMPLE_STEP_OUTPUT --value 'the value you want to share'
+# envman add --key EXAMPLE_STEP_OUTPUT --value 'the value you want to share'
 # Envman can handle piped inputs, which is useful if the text you want to
 # share is complex and you don't want to deal with proper bash escaping:
 #  cat file_with_complex_input | envman add --KEY EXAMPLE_STEP_OUTPUT
@@ -24,7 +24,7 @@ envman add --key EXAMPLE_STEP_OUTPUT --value 'the value you want to share'
 
 # git@github.com:alphaversion/bamboo.git -> https://api.github.com/repos/:owner/:repo/issues/:issue_number
 
-if [ -n "${issue_number}" ]; then
+if [ -z "${issue_number}" ]; then
     issue_number=`echo ${BITRISE_GIT_MESSAGE} | sed -E "s/Merge pull request #(\d+) from/\1/"`
 fi
 
