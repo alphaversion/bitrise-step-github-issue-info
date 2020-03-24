@@ -38,8 +38,8 @@ RESULT=`curl "$URL" -H "Authorization: token ${personal_access_token}"`
 CR=$'\\\x0D'
 LF=$'\\\x0A'
 
-TITLE=`echo $RESULT | jq '.title' | sed -E "s/^\"//g" | sed -E "s/\"$//g" | sed -E "N;s/$CR//g"`
-BODY=`echo $RESULT | jq '.body' | sed -E "s/^\"//g" | sed -E "s/\"$//g" | sed -E "N;s/$CR//g"`
+TITLE=`echo $RESULT | jq '.title' | sed -E "s/^\"//g" | sed -E "s/\"$//g" | sed -E "N;s/\\\\r//g"`
+BODY=`echo $RESULT | jq '.body' | sed -E "s/^\"//g" | sed -E "s/\"$//g" | sed -E "N;s/\\\\r//g"`
 
 envman add --key GITHUB_ISSUE_TITLE --value $TITLE
 envman add --key GITHUB_ISSUE_BODY --value $BODY
