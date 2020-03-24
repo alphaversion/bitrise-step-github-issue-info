@@ -56,13 +56,7 @@ deps:
   apt_get:
   - name: git
   - name: wget
-  apt_get:
-  - name: git
-  - name: wget
   - name: jq
-  apt_get:
-  - name: git
-  - name: wget
   - name: nkf
 
 toolkit:
