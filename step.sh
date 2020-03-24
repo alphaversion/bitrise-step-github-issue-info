@@ -35,8 +35,8 @@ URL="https://api.github.com/repos/$OWNER/$REPOSITORY/issues/${issue_number}"
 
 RESULT=`curl "$URL" -H "Authorization: token ${personal_access_token}"`
 
-TITLE=`echo $RESULT | jq '.title' | nkf -Lu -w | sed -E "s/^\"//g" | sed -E "s/\"$//g"`
-BODY=`echo $RESULT | jq '.body' | nkf -Lu -w | sed -E "s/^\"//g" | sed -E "s/\"$//g"`
+TITLE=`echo $RESULT | jq '.title' | sed -E "s/^\"//g" | sed -E "s/\"$//g"`
+BODY=`echo $RESULT | jq '.body' | sed -e :loop -e 'N; $!b loop' -e 's/\\r//g' | sed -E "s/^\"//g" | sed -E "s/\"$//g"`
 
 envman add --key GITHUB_ISSUE_TITLE --value $TITLE
 envman add --key GITHUB_ISSUE_BODY --value $BODY
