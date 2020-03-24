@@ -35,10 +35,8 @@ URL="https://api.github.com/repos/$OWNER/$REPOSITORY/issues/${issue_number}"
 
 RESULT=`curl "$URL" -H "Authorization: token ${personal_access_token}"`
 
-LF=$'\\\x0A'
-
-TITLE=`echo $RESULT | jq -r '.title'`
+TITLE=`echo $RESULT | jq -r '.title' | nkf -Lu -w`
 BODY=`echo $RESULT | jq  -r '.body' | nkf -Lu -w`
 
-envman add --key GITHUB_ISSUE_TITLE --value $TITLE
+envman add --key GITHUB_ISSUE_TITLE --value "$TITLE"
 envman add --key GITHUB_ISSUE_BODY --value "$BODY"
