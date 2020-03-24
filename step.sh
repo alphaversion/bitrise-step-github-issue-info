@@ -25,7 +25,7 @@ envman add --key EXAMPLE_STEP_OUTPUT --value 'the value you want to share'
 # git@github.com:alphaversion/bamboo.git -> https://api.github.com/repos/:owner/:repo/issues/:issue_number
 
 OWNER=`echo ${repository_url} | sed -E "s/git@github.com\:(.*)\/(.*)\.git/\1/"`
-REPOSITORY=`echo ${repository_url} | sed -E "s/git@github.com\:(.*)\/(.*)\.git/\1/"`
+REPOSITORY=`echo ${repository_url} | sed -E "s/git@github.com\:(.*)\/(.*)\.git/\2/"`
 
 URL="https://api.github.com/repos/$OWNER/$REPOSITORY/issues/${issue_number}"
 
