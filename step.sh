@@ -41,4 +41,4 @@ TITLE=`echo $RESULT | jq -r '.title'`
 BODY=`echo $RESULT | jq  -r '.body' | nkf -Lu -w`
 
 envman add --key GITHUB_ISSUE_TITLE --value $TITLE
-envman add --key GITHUB_ISSUE_BODY --value $BODY
+envman add --key GITHUB_ISSUE_BODY --value "$BODY"
