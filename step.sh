@@ -22,10 +22,10 @@ envman add --key EXAMPLE_STEP_OUTPUT --value 'the value you want to share'
 # Any non zero exit code will be registered as "failed" by `bitrise`.
 
 
-# https://github.com/alphaversion/bamboo -> https://api.github.com/repos/:owner/:repo/issues/:issue_number
+# git@github.com:alphaversion/bamboo.git -> https://api.github.com/repos/:owner/:repo/issues/:issue_number
 
-OWNER=`echo ${repository_url} | sed -E "s/https\:\/\/github.com\/(.*)\/(.*)$/\1/"`
-REPOSITORY=`echo ${repository_url} | sed -E "s/https\:\/\/github.com\/(.*)\/(.*)$/\2/"`
+OWNER=`echo ${repository_url} | sed -E "s/git@github.com\:(.*)\/(.*)\.git/\1/"`
+REPOSITORY=`echo ${repository_url} | sed -E "s/git@github.com\:(.*)\/(.*)\.git/\1/"`
 
 URL="https://api.github.com/repos/$OWNER/$REPOSITORY/issues/${issue_number}"
 
