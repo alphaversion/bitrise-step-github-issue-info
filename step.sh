@@ -28,6 +28,10 @@ if [ -z "${issue_number}" ]; then
     issue_number=`echo "${GIT_CLONE_COMMIT_MESSAGE_SUBJECT}" | sed -E "s/^.*#([0-9]+).*$/\1/"`
 fi
 
+if [ -z "${issue_number}" ]; then
+    exit 0
+fi
+
 OWNER=`echo ${repository_url} | sed -E "s/git@github.com\:(.*)\/(.*)\.git/\1/"`
 REPOSITORY=`echo ${repository_url} | sed -E "s/git@github.com\:(.*)\/(.*)\.git/\2/"`
 
@@ -40,3 +44,5 @@ BODY=`echo $RESULT | jq '.body' | sed -E "s/\r//g"`
 
 envman add --key GITHUB_ISSUE_TITLE --value $TITLE
 envman add --key GITHUB_ISSUE_BODY --value $BODY
+
+exit 0
