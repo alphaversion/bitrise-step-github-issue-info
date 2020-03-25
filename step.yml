@@ -53,13 +53,13 @@ deps:
   brew:
   - name: git
   - name: wget
-  apt_get:
-  - name: git
-  - name: wget
+  - name: jq
+  - name: nkf
   apt_get:
   - name: git
   - name: wget
   - name: jq
+  - name: nkf
 
 toolkit:
   bash:
